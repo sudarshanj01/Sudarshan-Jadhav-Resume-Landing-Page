@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Code, Server, ChevronRight, Github, Linkedin, Mail, Terminal, Database, Cloud, Settings, BarChart } from 'lucide-react';
+import Link from 'next/link';
 
 // Custom components inspired by shadcn UI but with unique styling
 const Card = ({ children, className = '' }) => (
@@ -14,11 +15,10 @@ const Card = ({ children, className = '' }) => (
 const Button = ({ children, active = false, onClick, className = '' }) => (
   <button
     onClick={onClick}
-    className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
-      active
-        ? 'bg-blue-500 text-white shadow-md'
-        : 'bg-blue-100 text-blue-800 hover:bg-blue-200'
-    } ${className}`}
+    className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${active
+      ? 'bg-blue-500 text-white shadow-md'
+      : 'bg-blue-100 text-blue-800 hover:bg-blue-200'
+      } ${className}`}
   >
     {children}
   </button>
@@ -35,6 +35,30 @@ const TabContent = ({ active, children }) => (
     {children}
   </div>
 );
+
+// Pre-defined positions to prevent hydration mismatch
+const codeElementPositions = [
+  { top: "10%", left: "15%", rotate: "10deg", opacity: 0.5 },
+  { top: "20%", left: "80%", rotate: "-15deg", opacity: 0.7 },
+  { top: "35%", left: "25%", rotate: "25deg", opacity: 0.6 },
+  { top: "45%", left: "70%", rotate: "-5deg", opacity: 0.4 },
+  { top: "60%", left: "10%", rotate: "15deg", opacity: 0.7 },
+  { top: "70%", left: "60%", rotate: "-20deg", opacity: 0.5 },
+  { top: "80%", left: "30%", rotate: "5deg", opacity: 0.6 },
+  { top: "15%", left: "45%", rotate: "-10deg", opacity: 0.5 },
+  { top: "55%", left: "85%", rotate: "20deg", opacity: 0.7 },
+  { top: "75%", left: "50%", rotate: "-15deg", opacity: 0.6 },
+  { top: "25%", left: "5%", rotate: "10deg", opacity: 0.4 },
+  { top: "40%", left: "95%", rotate: "-25deg", opacity: 0.7 },
+  { top: "65%", left: "35%", rotate: "15deg", opacity: 0.5 },
+  { top: "85%", left: "75%", rotate: "-5deg", opacity: 0.6 },
+  { top: "5%", left: "65%", rotate: "20deg", opacity: 0.4 },
+  { top: "30%", left: "55%", rotate: "-10deg", opacity: 0.7 },
+  { top: "50%", left: "20%", rotate: "5deg", opacity: 0.5 },
+  { top: "90%", left: "40%", rotate: "-20deg", opacity: 0.6 },
+  { top: "95%", left: "90%", rotate: "15deg", opacity: 0.7 },
+  { top: "12%", left: "28%", rotate: "-5deg", opacity: 0.5 }
+];
 
 const DigitalResume = () => {
   const [activeTab, setActiveTab] = useState('dev');
@@ -93,19 +117,13 @@ const DigitalResume = () => {
     ]
   };
 
-  const randomPositions = Array.from({ length: 20 }).map(() => ({
-    top: `${Math.random() * 100}%`,
-    left: `${Math.random() * 100}%`,
-    rotate: `${Math.random() * 90 - 45}deg`,
-    opacity: Math.random() * 0.7 + 0.3
-  }));
+  const codeStrings = ['<div>', '</>', '{code}', '[]', 'const', 'function', '()', '&&', '||'];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 text-blue-900">
       {/* Header */}
-      <header className={`sticky top-0 z-50 backdrop-blur-md transition-all duration-300 ${
-        scrolled ? 'bg-blue-100/80 shadow-md py-3' : 'bg-transparent py-6'
-      }`}>
+      <header className={`sticky top-0 z-50 backdrop-blur-md transition-all duration-300 ${scrolled ? 'bg-blue-100/80 shadow-md py-3' : 'bg-transparent py-6'
+        }`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold flex items-center gap-2">
             <span className="bg-blue-500 text-white p-2 rounded-lg"><Code size={24} /></span>
@@ -113,13 +131,13 @@ const DigitalResume = () => {
           </h1>
 
           <div className="flex items-center gap-4">
-            <a href="#" className="p-2 rounded-full hover:bg-blue-200 transition-colors">
+            <a href="https://github.com/sudarshanj01" target='blank' className="p-2 rounded-full hover:bg-blue-200 transition-colors">
               <Github size={20} />
             </a>
-            <a href="#" className="p-2 rounded-full hover:bg-blue-200 transition-colors">
+            <a href="https://www.linkedin.com/in/sudarshan-jadhav-8a3982199/" target='blank' className="p-2 rounded-full hover:bg-blue-200 transition-colors">
               <Linkedin size={20} />
             </a>
-            <a href="#" className="p-2 rounded-full hover:bg-blue-200 transition-colors">
+            <a href="mailto:sudarshan08062001@gmail.com" target='blank' className="p-2 rounded-full hover:bg-blue-200 transition-colors">
               <Mail size={20} />
             </a>
           </div>
@@ -175,7 +193,7 @@ const DigitalResume = () => {
               >
                 <div className="w-full h-96 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 shadow-2xl flex items-center justify-center overflow-hidden relative">
                   <div className="absolute inset-0 opacity-10">
-                    {randomPositions.map((pos, i) => (
+                    {codeElementPositions.map((pos, i) => (
                       <div
                         key={i}
                         className="absolute text-2xl font-mono"
@@ -186,7 +204,7 @@ const DigitalResume = () => {
                           opacity: pos.opacity
                         }}
                       >
-                        {['<div>', '</>', '{code}', '[]', 'const', 'function', '()', '&&', '||'][i % 9]}
+                        {codeStrings[i % codeStrings.length]}
                       </div>
                     ))}
                   </div>
@@ -583,6 +601,7 @@ const DigitalResume = () => {
         </div>
       </section>
 
+
       {/* Education & Certifications */}
       <section className="py-16">
         <div className="container mx-auto px-4">
@@ -617,14 +636,20 @@ const DigitalResume = () => {
       {/* Call to Action */}
       <section className="py-16 bg-blue-500 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Let's Build Something Amazing Together</h2>
+          <h2 className="text-3xl font-bold mb-6">Lets Build Something Amazing Together</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Looking for a developer who can handle both front-end elegance and back-end robustness,
             while ensuring your infrastructure scales seamlessly?
           </p>
-          <Button className="mx-auto bg-white text-blue-500 hover:bg-blue-100">
-            Get In Touch <ChevronRight size={20} />
-          </Button>
+          <a
+            href="https://www.linkedin.com/in/sudarshan-jadhav-8a3982199/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-4 py-2 mx-auto rounded-md bg-white text-blue-500 hover:bg-blue-100 transition-colors duration-200 shadow-sm border border-gray-200"
+          >
+            Get In Touch
+            <ChevronRight size={20} className="ml-1" />
+          </a>
         </div>
       </section>
     </div>
