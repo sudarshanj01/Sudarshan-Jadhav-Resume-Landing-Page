@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Code, Server, ChevronRight, Github, Linkedin, Mail, Terminal, Database, Cloud, Settings, BarChart } from 'lucide-react';
+import { Code, Server, ChevronRight, Github, Linkedin, Mail, FileDown, Terminal, Database, Cloud, Settings, BarChart } from 'lucide-react';
 import Link from 'next/link';
 
 // Custom components inspired by shadcn UI but with unique styling
@@ -15,7 +15,7 @@ const Card = ({ children, className = '' }) => (
 const Button = ({ children, active = false, onClick, className = '' }) => (
   <button
     onClick={onClick}
-    className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${active
+    className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center cursor-pointer gap-2 ${active
       ? 'bg-blue-500 text-white shadow-md'
       : 'bg-blue-100 text-blue-800 hover:bg-blue-200'
       } ${className}`}
@@ -59,6 +59,18 @@ const codeElementPositions = [
   { top: "95%", left: "90%", rotate: "15deg", opacity: 0.7 },
   { top: "12%", left: "28%", rotate: "-5deg", opacity: 0.5 }
 ];
+
+const downloadResume = () => {
+  // Create a link element
+  const link = document.createElement('a');
+  // Set the href to your PDF file in the public folder
+  link.href = '/Sudarshan Java Full Stack.docx';  // Assuming your file is named resume.pdf in the public folder
+  link.download = 'Sudarshan_Jadhav_Resume.docx';
+  // Append to body, click, and remove
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
 const DigitalResume = () => {
   const [activeTab, setActiveTab] = useState('dev');
@@ -141,6 +153,13 @@ const DigitalResume = () => {
             <a href="mailto:sudarshan08062001@gmail.com" target='blank' className="p-2 rounded-full hover:bg-blue-200 transition-colors">
               <Mail size={20} />
             </a>
+            <Button
+              onClick={downloadResume}
+              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium"
+            >
+              <FileDown size={18} />
+              <span>Resume</span>
+            </Button>
           </div>
         </div>
       </header>
