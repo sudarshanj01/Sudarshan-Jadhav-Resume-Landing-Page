@@ -100,9 +100,10 @@ const DigitalResume = () => {
       { name: 'React', icon: <Code size={20} /> },
       { name: 'Next.js', icon: <Code size={20} /> },
       { name: 'HTML5/CSS3', icon: <Code size={20} /> },
-      { name: 'REST APIs', icon: <Server size={20} /> },
       { name: 'MySQL', icon: <Database size={20} /> },
       { name: 'MongoDB', icon: <Database size={20} /> },
+      { name: 'PostgreSQL', icon: <Database size={20} /> },
+
     ],
     ops: [
       { name: 'AWS', icon: <Cloud size={20} /> },
@@ -127,7 +128,7 @@ const DigitalResume = () => {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold flex items-center gap-2">
             <span className="bg-blue-500 text-white p-2 rounded-lg"><Code size={24} /></span>
-            <span>Sudarshan</span>
+            <span>SudarshanDev</span>
           </h1>
 
           <div className="flex items-center gap-4">
@@ -159,7 +160,7 @@ const DigitalResume = () => {
                   Full Stack Developer <span className="text-blue-500">+</span> DevOps Engineer
                 </h1>
                 <p className="text-xl mt-6 text-blue-800">
-                  Building scalable web applications with Java, Spring Boot, React, and AWS cloud infrastructure
+                  Building scalable web applications with Java, Spring Boot, React - Next JS and AWS cloud infrastructure
                 </p>
               </motion.div>
 
@@ -300,7 +301,7 @@ const DigitalResume = () => {
                   <ul className="space-y-2">
                     <li className="flex items-center gap-2">
                       <ChevronRight size={16} className="text-blue-500" />
-                      MySQL &amp; MongoDB
+                      MySQL, PostgreSQL  &amp; MongoDB
                     </li>
                     <li className="flex items-center gap-2">
                       <ChevronRight size={16} className="text-blue-500" />
