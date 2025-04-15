@@ -176,7 +176,7 @@ const DigitalResume = () => {
               >
                 <Badge>2+ Years Experience</Badge>
                 <h1 className="text-4xl md:text-6xl font-bold mt-4 leading-tight">
-                  Full Stack SDE <span className="text-blue-500">+</span> DevOps Engineer
+                  Full Stack developer <span className="text-blue-500">+</span> DevOps Engineer
                 </h1>
                 <p className="text-xl mt-6 text-blue-800">
                   Building scalable web applications with Java, Spring Boot, React - Next JS and AWS cloud infrastructure
